@@ -1,0 +1,24 @@
+class Solution {
+    vector<vector<int>> res;
+    void solve(vector<int>& candidates, int target, int idx, vector<int>& rsf){
+        if(target < 0) return;
+        if(target == 0){
+            res.push_back(rsf);
+            return;
+        }
+        for(int i = idx; i < candidates.size(); i++){
+            idx = i;
+            if(target - candidates[i] >= 0){
+                rsf.push_back(candidates[i]);
+                solve(candidates,target - candidates[i], idx, rsf);
+                rsf.pop_back();
+            }
+        }
+    }
+public:
+    vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+        vector<int> rsf;
+        solve(candidates,target,0,rsf);
+        return res;
+    }
+};
