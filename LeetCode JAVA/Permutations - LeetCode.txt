@@ -1,0 +1,18 @@
+class Solution {
+    List<List<Integer>> ans = new ArrayList<>();
+    public List<List<Integer>> permute(int[] nums) {
+        util(Arrays.stream(nums).boxed().collect(Collectors.toList()),0);
+        return ans;
+       
+    }
+    public void util(List<Integer>arr, int k){
+        for(int i=k;i<arr.size();i++){
+            Collections.swap(arr, i, k);
+            util(arr,k+1);
+            Collections.swap(arr,k,i);
+        }
+        if(k==arr.size()){
+            ans.add(new ArrayList<>(arr));
+        }
+    }
+}
