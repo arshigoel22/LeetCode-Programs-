@@ -1,0 +1,22 @@
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int o=m+n;
+        int i,j;
+        int c=0;
+        int b[]=new int [o];
+        for(i=0;i<m;i++)
+        {
+            b[i]=nums1[i];
+        }
+        for(j=m;j<m+n;j++)
+        {
+            b[j]=nums2[c++];
+        }
+        Arrays.sort(b);
+        for(i=0;i<o;i++)
+        {
+            nums1[i]=b[i];
+        }
+        
+    }
+}
