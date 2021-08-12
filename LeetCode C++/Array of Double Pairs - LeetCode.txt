@@ -1,0 +1,47 @@
+class Solution {
+public:
+    bool canReorderDoubled(vector<int>& arr) {
+        int tot=arr.size()/2;
+        
+        map<int,int>help;
+            int zero=0;
+        for(int i=0;i<arr.size();i++)
+        {
+            if(arr[i]==0){
+                zero+=1;
+            }
+            help[arr[i]]+=1;
+        }
+        int total=0;
+        for(auto it=help.begin();it!=help.end();it++)
+        {
+            int value=it->first;
+            int quan=it->second;
+            if(quan==0){
+                continue;
+            }
+            if(help.find(value*2)!=help.end()&&value!=value*2)
+            {
+                total+=min(quan,help[value*2]);
+                if(quan>help[value*2])
+                {
+                    help[value]-=help[value*2];
+                    help[value*2]=0;
+                }
+                else
+                {
+                    help[value]=0;
+                help[value*2]-=squan;
+                }
+            }
+            }
+        total+=zero/2;
+        if(total<tot)
+        {
+            return false;
+
+        }
+        return true;
+        
+    }
+};
