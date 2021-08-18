@@ -1,0 +1,15 @@
+class Solution {
+public:
+    int res=0;
+    void helpher(TreeNode*root,int maxi){
+        if(root==NULL)return;
+        if(root->val>=maxi)res+=1;
+        helpher(root->left,max(maxi,root->val));
+        helpher(root->right,max(maxi,root->val));
+    }
+    int goodNodes(TreeNode* root) {
+        helpher(root,root->val);
+        return res;
+        
+    }
+};
