@@ -1,0 +1,17 @@
+class Solution {
+    List<Integer>result=new ArrayList<>();
+    public List<Integer> preorderTraversal(TreeNode root) {
+        fillTheResult(root);
+        return result;
+        
+    }
+    
+    void fillTheResult(TreeNode root){
+        if(root==null) return;
+        
+        result.add(root.val);
+        
+        fillTheResult(root.left);
+        fillTheResult(root.right);
+    }
+}
