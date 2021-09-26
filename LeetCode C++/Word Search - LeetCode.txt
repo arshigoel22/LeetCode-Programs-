@@ -1,0 +1,50 @@
+class Solution {
+public:
+    vector<vector<bool>> visiting;      
+    vector<int> xMoves = {-1, 0, 1, 0}; 
+    vector<int> yMoves = {0, 1, 0, -1}; 
+    
+    bool explore(vector<vector<char>>& board, string word, int idx, int r, int c){
+        
+        if(visiting[r][c]) return false;
+        
+       
+        if(board[r][c] != word[idx]) return false;
+        
+      
+        if(idx == word.size()-1) return true;
+        
+      
+        visiting[r][c] = true;
+		
+        for(int i = 0; i < xMoves.size(); i++){
+            int rOffset = yMoves[i];
+            int cOffset = xMoves[i];
+            
+            if(r+rOffset >= 0 && r+rOffset < board.size() && c+cOffset >= 0 && c+cOffset < board[0].size()){
+                if(explore(board, word, idx+1, r+rOffset, c+cOffset))
+                    return true;
+            }
+        }
+        
+        visiting[r][c] = false;
+        
+        return false;
+    }
+    
+    bool exist(vector<vector<char>>& board, string word) {
+        int m = board.size();
+        int n = board[0].size();
+        vector<vector<bool>> boardSize(m, vector<bool>(n, false));
+        visiting = boardSize;
+        
+        for(int i = 0; i < board.size(); i++){
+            for(int j = 0; j < board[0].size(); j++){
+                if(explore(board, word, 0, i, j))
+                    return true;
+            }
+        }
+        
+        return false;
+    }
+};
