@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        if(needle=="")
+            return 0;
+        
+        int needleLen=needle.length();
+        int hayLen=haystack.length();
+        
+        if(needleLen>hayLen)
+            return -1;
+        
+        int index=0;
+        int ans=-1;
+        
+        while(index+needleLen!=hayLen+1)
+            if(haystack.substr(index,needleLen)==needle)
+            {
+                ans=index;
+                break;
+            }
+        else
+            index++;
+        return ans;
+        
+    }
+};
